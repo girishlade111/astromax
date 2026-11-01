@@ -1,14 +1,18 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, "") + "/";
+---
+
 <div class="border-white/20 border-b justify-center w-full">
   <div
     class="text-center items-center w-full gap-2 flex flex-col justify-between md:p-8 md:flex-row"
   >
     <a
-      href="/"
+      href={base}
       class="text-white font-black uppercase tracking-tight p-4 md:p-0"
       ><span>ASTROMAX</span>
     </a>
     <a
-      href="https://github.com/michael-andreuzza/astromax"
+      href="https://github.com/girishlade111/astromax"
       class="w-full bg-white duration-200 font-black hover:bg-black hover:text-white lg:ml-auto lg:w-fit px-6 py-4 sm:rounded-full text-black text-center text-xs uppercase"
       >Github</a
     ><a

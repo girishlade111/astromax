@@ -5,8 +5,9 @@ export default defineConfig({
    vite: {
     plugins: [tailwindcss()],
   },
-  // add yur domain name here
-  site: 'https://lexingtonthemes.com',
+  // GitHub Pages project site: https://girishlade111.github.io/astromax/
+  site: 'https://girishlade111.github.io',
+  base: '/astromax',
   compressHTML: true,
   integrations: [sitemap()]
 });

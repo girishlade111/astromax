@@ -31,6 +31,8 @@ The design language is intentionally stark: near-black canvas, warm off-white te
 
 ## Demo
 
+**Live site:** <https://girishlade111.github.io/astromax/>
+
 Run locally and open <http://localhost:4321>:
 
 ```bash
@@ -137,6 +139,9 @@ npm --version
 ```text
 .
 ├── .astro/                     # Generated Astro types & cache (ignored)
+├── .github/
+│   └── workflows/
+│       └── deploy.yml          # Build + deploy to GitHub Pages
 ├── .vscode/
 │   └── settings.json
 ├── src/
@@ -305,7 +310,20 @@ npm run build
 
 **Cloudflare Pages** — build command `npm run build`, build output directory `dist`.
 
-**GitHub Pages** — set `site` and `base` in `astro.config.mjs` if the site is served from a subpath, then publish `dist/` from a workflow.
+**GitHub Pages** — already configured. The workflow at `.github/workflows/deploy.yml` builds on every push to `main` and publishes `dist/` via GitHub Actions.
+
+- `astro.config.mjs` sets `site: 'https://girishlade111.github.io'` and `base: '/astromax'` for the project-page subpath.
+- Internal links must respect the base path. Use `import.meta.env.BASE_URL` for files in `public/`:
+
+  ```astro
+  ---
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "") + "/";
+  ---
+  <link rel="icon" href={`${base}favicons/favicon-32x32.png`} />
+  ```
+
+- Repository settings must keep **Settings → Pages → Build and deployment → Source** set to **GitHub Actions**.
+- If you rename the repository or move to a custom domain, update `site` and `base` to match.
 
 **Any static server**
 
